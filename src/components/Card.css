@@ -1,0 +1,9 @@
+/* src/components/Card.css */
+.card {
+  background-color: white; /* fundo branco */
+  padding: 40px; /* espaço interno */
+  border-radius: 16px; /* cantos arredondados */
+  width: 100%; /* ocupa toda a largura disponível */
+  max-width: 400px; /* mas não maior que 400px */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* sombra leve */
+}
