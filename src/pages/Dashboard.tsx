@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import DashboardCard from "../components/Dashboard_Card";
+import DashboardCard from "../components/Dashboard/Card/Dashboard_Card";
 import "./Dashboard.css";
 import type Service from "../types/Service";
 import handleDelete from "../utils/Dashboard/handle_Delete";

@@ -1,7 +1,7 @@
 // src/components/ReservationsGrid.tsx
 import React from "react";
-import type { Reservation } from "../types/Reservation";
-import ReservationCard from "./Reservation_Card";
+import type { Reservation } from "../../../types/Reservation";
+import ReservationCard from "../Card/Reservation_Card";
 import "./Reservation_Grid.css";
 
 interface Props {

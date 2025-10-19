@@ -1,5 +1,5 @@
 import React from "react";
-import type { Reservation } from "../types/Reservation";
+import type { Reservation } from "../../../types/Reservation";
 import "./Reservation_Card.css";
 
 interface Props {
