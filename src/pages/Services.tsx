@@ -13,13 +13,17 @@ export default function Services() {
   const [tipo, setTipo] = useState<string>("");
   const navigate = useNavigate();
 
+  const token = localStorage.getItem("token");
+
   useEffect(() => {
+    if (!token) {
+      console.log("Token inválido, faça login novamente");
+      navigate("/");
+      return;
+    }
+
     async function fetchServices() {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          console.log("Sem token");
-        }
         const resUser = await api.get("/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -59,11 +63,6 @@ export default function Services() {
     }
 
     try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        alert("Token inválido, faça login novamente");
-        return;
-      }
       const novoSaldo = await HireService(serviceId, preco, saldo, token);
       setSaldo(novoSaldo);
 
