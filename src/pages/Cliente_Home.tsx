@@ -2,14 +2,14 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import "./Cliente_Home.css";
-import "../components/Saldo_Card.css";
+import "../components/Saldo/Saldo_Card.css";
 import type Service from "../types/Service";
 import { useNavigate } from "react-router-dom";
 import { contratarServico } from "../Services/Reservation_Service";
 import { HireService } from "../Services/Hire_Service";
-import ServicesGrid from "../components/Services_Grid";
-import SaldoCard from "../components/Saldo_Card";
-import Navbar from "../components/Navbar";
+import ServicesGrid from "../components/Services_Components/Grid/Services_Grid";
+import SaldoCard from "../components/Saldo/Saldo_Card";
+import Navbar from "../components/Nav/Navbar";
 
 export default function ClienteHome() {
   const [services, setServices] = useState<Service[]>([]);
@@ -52,7 +52,7 @@ export default function ClienteHome() {
       navigate("/");
       return;
     }
-
+    console.log("estou aqui");
     if (saldo < preco) {
       alert("Saldo insuficiente");
       return;

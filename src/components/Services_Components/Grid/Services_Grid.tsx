@@ -1,5 +1,5 @@
-import Card from "./Services_Card";
-import type Service from "../types/Service";
+import Card from "../Card/Services_Card";
+import type Service from "../../../types/Service";
 import "./Services_Grid.css";
 
 interface ServicesGridProps {
@@ -8,11 +8,7 @@ interface ServicesGridProps {
   saldo: number;
 }
 
-export default function ServicesGrid({
-  services,
-  onHire,
-  saldo,
-}: ServicesGridProps) {
+export default function ServicesGrid({ services, onHire }: ServicesGridProps) {
   return (
     <div className="services-grid">
       {services.map((s) => (
@@ -22,12 +18,7 @@ export default function ServicesGrid({
           <p>
             <strong>Preço:</strong> {s.preco.toFixed(2)} kz
           </p>
-          <button
-            disabled={saldo < s.preco}
-            onClick={() => onHire(s.id, s.preco)}
-          >
-            Contratar
-          </button>
+          <button onClick={() => onHire(s.id, s.preco)}>Contratar</button>
         </Card>
       ))}
     </div>

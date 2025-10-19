@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import type { Reservation } from "../types/Reservation";
-import ReservationsGrid from "../components/Reservation_Grid";
-import "../components/Reservation_Grid.css";
-import Navbar from "../components/Navbar";
+import ReservationsGrid from "../components/Reservation/Grid/Reservation_Grid";
+import "../components/Reservation/Grid/Reservation_Grid.css";
+import Navbar from "../components/Nav/Navbar";
 
 export default function Reservations() {
   const [reservations, setReservations] = useState<Reservation[]>([]);
