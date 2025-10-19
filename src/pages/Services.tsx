@@ -4,6 +4,7 @@ import type Service from "../types/Service";
 import { useNavigate } from "react-router-dom";
 import type { UserType } from "../types/User";
 import { contratarServico } from "../Services/Reservation_Service";
+import { HireService } from "../Services/Hire_Service";
 
 export default function Services() {
   const [services, setServices] = useState<Service[]>([]);
@@ -49,7 +50,7 @@ export default function Services() {
       }
     }
     fetchServices();
-  }, []);
+  }, [navigate]);
 
   const handleHire = async (serviceId: number, preco: number) => {
     if (saldo < preco) {
@@ -63,9 +64,14 @@ export default function Services() {
         alert("Token inválido, faça login novamente");
         return;
       }
+      const novoSaldo = await HireService(serviceId, preco, saldo, token);
+      setSaldo(novoSaldo);
+
       await contratarServico(serviceId, token);
+
       alert("Serviço contratado com sucesso");
       setSaldo((prev) => prev - preco); //we set to the current balance
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error(error.response?.data || error.message);
       alert(error.response?.data?.message || "Erro ao contratar serviço");
