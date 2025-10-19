@@ -1,0 +1,95 @@
+.saldo-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 32px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto; /* centralizado horizontal */
+  transition: all 0.3s ease;
+}
+
+/* Header */
+.saldo-card__header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #18261b;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Corpo */
+.saldo-card__body {
+  margin-top: 16px;
+}
+
+/* Valor */
+.saldo-card__amount {
+  font-size: 2.5rem;
+  color: #4ea894;
+  font-weight: bold;
+}
+
+/* Icon */
+.saldo-card__icon {
+  width: 28px;
+  height: 28px;
+  background-color: #4ea894;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+/* =============================
+   Responsividade
+   ============================= */
+@media (max-width: 1024px) {
+  .saldo-card {
+    max-width: 420px;
+    padding: 20px 28px;
+  }
+
+  .saldo-card__header h2 {
+    font-size: 1.3rem;
+  }
+
+  .saldo-card__amount {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .saldo-card {
+    max-width: 95%; /* ocupa quase toda a largura no tablet */
+    padding: 20px;
+  }
+
+  .saldo-card__header h2 {
+    font-size: 1.2rem;
+  }
+
+  .saldo-card__amount {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .saldo-card {
+    max-width: 100%; /* full width no mobile */
+    padding: 16px;
+  }
+
+  .saldo-card__header h2 {
+    font-size: 1rem;
+  }
+
+  .saldo-card__amount {
+    font-size: 1.6rem;
+  }
+}

@@ -1,12 +1,16 @@
 // src/pages/ClienteHome.tsx
 import { useEffect, useState } from "react";
 import api from "../api/axios";
+import "./Cliente_Home.css";
+import "../components/Saldo_Card.css";
 import type Service from "../types/Service";
 import { useNavigate } from "react-router-dom";
 import { contratarServico } from "../Services/Reservation_Service";
 import { HireService } from "../Services/Hire_Service";
 import ServicesGrid from "../components/Services_Grid";
-import "./Cliente_Home.css";
+import SaldoCard from "../components/Saldo_Card";
+import Navbar from "../components/Navbar";
+
 export default function ClienteHome() {
   const [services, setServices] = useState<Service[]>([]);
   const [saldo, setSaldo] = useState<number>(0);
@@ -25,7 +29,8 @@ export default function ClienteHome() {
         const resUser = await api.get("/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setSaldo(resUser.data.saldo);
+        const user = resUser.data.user;
+        setSaldo(user.saldo);
 
         const resServices = await api.get("/services", {
           headers: { Authorization: `Bearer ${token}` },
@@ -69,9 +74,11 @@ export default function ClienteHome() {
 
   return (
     <div className="cliente-home">
+      <Navbar />
       <h1 style={{ textAlign: "center", color: "white" }}>
         Serviços Disponíveis
       </h1>
+      <SaldoCard saldo={saldo} />
       <ServicesGrid services={services} onHire={handleHire} saldo={saldo} />
     </div>
   );

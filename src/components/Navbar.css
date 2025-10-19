@@ -1,0 +1,20 @@
+/* src/components/Navbar.css */
+.navbar {
+  display: flex;
+  gap: 20px;
+  padding: 16px 32px;
+  background-color: #4ea894;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar__link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.navbar__link:hover {
+  color: #187b1b;
+}
