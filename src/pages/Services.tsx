@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import type Service from "../types/Service";
+import { useNavigate } from "react-router-dom";
+import type { UserType } from "../types/User";
 
 export default function Services() {
   const [services, setServices] = useState<Service[]>([]);
   const [saldo, setSaldo] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
-
+  const [tipo, setTipo] = useState<string>("");
+  const navigate = useNavigate();
   useEffect(() => {
     async function fetchServices() {
       try {
@@ -17,6 +20,19 @@ export default function Services() {
         const resUser = await api.get("/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
+
+        // we check to see if the user is of the type "cliente"
+
+        const user = resUser.data;
+
+        const userTipo: UserType = user.tipo;
+
+        setTipo(userTipo);
+        if (userTipo !== "CLIENTE") {
+          alert("Acesso permitido apenas para clientes");
+          navigate("/");
+          return;
+        }
         setSaldo(resUser.data.saldo);
 
         const res = await api.get("/services", {
