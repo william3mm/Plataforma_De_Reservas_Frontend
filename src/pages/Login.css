@@ -1,0 +1,33 @@
+/* src/pages/Login.css */
+.login-container {
+  display: flex;
+  justify-content: center; /* centraliza horizontal */
+  align-items: center; /* centraliza vertical */
+  height: 100vh; /* ocupa a tela inteira */
+  background-color: #4ea894; /* verde de fundo */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background-color: #187b1b;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #145a16;
+}

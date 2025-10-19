@@ -7,4 +7,22 @@ export interface Reservation {
   valor: number;
   status: ReservationStatus;
   createdAt: string;
+  updatedAt: string;
+
+  cliente: {
+    id: number;
+    nome: string;
+    email: string;
+  };
+
+  servico: {
+    id: number;
+    nome: string;
+    preco: number;
+    prestador: {
+      id: number;
+      nome: string;
+      email: string;
+    };
+  };
 }
