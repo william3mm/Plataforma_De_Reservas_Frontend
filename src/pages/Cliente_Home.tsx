@@ -1,80 +1,78 @@
-import { useNavigate } from "react-router-dom";
+// src/pages/ClienteHome.tsx
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import Services from "./Services";
-import type { UserType } from "../types/User";
-
+import type Service from "../types/Service";
+import { useNavigate } from "react-router-dom";
+import { contratarServico } from "../Services/Reservation_Service";
+import { HireService } from "../Services/Hire_Service";
+import ServicesGrid from "../components/Services_Grid";
+import "./Cliente_Home.css";
 export default function ClienteHome() {
+  const [services, setServices] = useState<Service[]>([]);
   const [saldo, setSaldo] = useState<number>(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    async function fetchUser() {
-      if (!token) {
-        navigate("/");
-        return;
-      }
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
 
+    async function fetchData() {
       try {
-        const res = await api.get("/me", {
+        const resUser = await api.get("/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        setSaldo(resUser.data.saldo);
 
-        const user = res.data.user;
-        const userTipo: UserType = user.tipo;
-
-        console.log(user);
-        if (userTipo !== "CLIENTE") {
-          alert("Acesso permitido apenas para clientes");
-          navigate("/");
-          return;
-        }
-
-        setSaldo(user.saldo);
+        const resServices = await api.get("/services", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setServices(resServices.data.data);
       } catch (err) {
-        console.error("Erro ao carregar usuário", err);
-        navigate("/");
+        console.error(err);
       } finally {
         setLoading(false);
       }
     }
 
-    fetchUser();
-  }, [token, navigate]);
+    fetchData();
+  }, [navigate]);
+
+  const handleHire = async (serviceId: number, preco: number) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
+    if (saldo < preco) {
+      alert("Saldo insuficiente");
+      return;
+    }
+
+    try {
+      const novoSaldo = await HireService(serviceId, preco, saldo, token);
+      setSaldo(novoSaldo);
+
+      await contratarServico(serviceId, token);
+      alert("Serviço contratado com sucesso!");
+    } catch (error: any) {
+      console.error(error);
+      alert("Erro ao contratar serviço.");
+    }
+  };
 
   if (loading) return <p>Carregando...</p>;
 
   return (
-    <div>
-      {/* Navbar */}
-      <nav
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          padding: "1rem",
-          background: "#eee",
-        }}
-      >
-        <span>Saldo: {saldo.toFixed(2)}</span>
-        <div>
-          <button onClick={() => navigate("/historico")}>Histórico</button>
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/");
-            }}
-          >
-            Logout
-          </button>
-        </div>
-      </nav>
-
-      {/* Passa saldo e função para atualizar para o Services */}
-      <div style={{ marginTop: "1rem" }}>
-        <Services saldo={saldo} setSaldo={setSaldo} />
-      </div>
+    <div className="cliente-home">
+      <h1 style={{ textAlign: "center", color: "white" }}>
+        Serviços Disponíveis
+      </h1>
+      <ServicesGrid services={services} onHire={handleHire} saldo={saldo} />
     </div>
   );
 }

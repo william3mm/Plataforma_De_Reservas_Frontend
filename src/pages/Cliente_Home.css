@@ -1,0 +1,5 @@
+.cliente-home {
+  min-height: 100vh; /* ocupa a tela toda */
+  background-color: #4ea894; /* cor de fundo da página */
+  padding: 20px;
+}

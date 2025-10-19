@@ -73,7 +73,7 @@ export default function Services({ saldo, setSaldo }: ServicesProps) {
         <div
           key={s.id}
           style={{
-            border: "1px solid #ccc",
+            border: "1px solid #c91717ff",
             borderRadius: "8px",
             padding: "1rem",
             width: "250px",
