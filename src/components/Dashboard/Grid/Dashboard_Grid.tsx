@@ -14,7 +14,7 @@ export default function DashboardGrid({
   onDelete,
 }: DashboardGridProps) {
   return (
-    <div className="dashboards-grid">
+    <div className="dashboard-grid">
       {services.map((s) => (
         <Card key={s.id}>
           <h3>{s.nome}</h3>
