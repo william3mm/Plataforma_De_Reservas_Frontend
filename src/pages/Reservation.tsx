@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
-import { Reservation } from "../types/Reservation";
+import type { Reservation } from "../types/Reservation";
 
 export default function Reservations() {
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -8,7 +8,7 @@ export default function Reservations() {
   useEffect(() => {
     async function fetchReservations() {
       try {
-        const token = await localStorage.getItem("token"); // depois vamos trocar por AsyncStorage
+        const token = localStorage.getItem("token"); // depois vamos trocar por AsyncStorage
         const res = await api.get("/reservations", {
           headers: { Authorization: `Bearer ${token}` },
         });

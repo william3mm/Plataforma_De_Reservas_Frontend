@@ -3,6 +3,7 @@ import api from "../api/axios";
 import type Service from "../types/Service";
 import { useNavigate } from "react-router-dom";
 import type { UserType } from "../types/User";
+import { contratarServico } from "../Services/Reservation_Service";
 
 export default function Services() {
   const [services, setServices] = useState<Service[]>([]);
@@ -10,6 +11,7 @@ export default function Services() {
   const [loading, setLoading] = useState<boolean>(true);
   const [tipo, setTipo] = useState<string>("");
   const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchServices() {
       try {
@@ -57,11 +59,11 @@ export default function Services() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await api.post(
-        "/reservations",
-        { servicoId: serviceId },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      if (!token) {
+        alert("Token inválido, faça login novamente");
+        return;
+      }
+      await contratarServico(serviceId, token);
       alert("Serviço contratado com sucesso");
       setSaldo((prev) => prev - preco); //we set to the current balance
     } catch (error: any) {
