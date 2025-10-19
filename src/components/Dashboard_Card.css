@@ -1,0 +1,175 @@
+/* =============================
+   Container principal da dashboard
+   ============================= */
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+  padding: 24px;
+  gap: 24px;
+}
+
+/* =============================
+   Card lateral
+   ============================= */
+.dashboard-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* centraliza verticalmente */
+  flex-shrink: 0;
+}
+
+.dashboard-card-wrapper .dashboard-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  width: 240px; /* largura fixa no desktop */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Título do card */
+.dashboard-card h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #18261b;
+  font-weight: 600;
+}
+
+/* Container dos botões */
+.dashboard-card__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Botões do card */
+.dashboard-card__buttons button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background-color: #4ea894;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboard-card__buttons button:hover {
+  background-color: #3b7d6b;
+}
+
+/* =============================
+   Lista de serviços
+   ============================= */
+.dashboard-services {
+  flex: 1; /* ocupa o restante da tela */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+.dashboard-service-item {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-service-item button {
+  margin-left: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background-color: #4ea894;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+
+.dashboard-service-item button:hover {
+  background-color: #3b7d6b;
+}
+
+/* =============================
+   Responsividade
+   ============================= */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .dashboard-card-wrapper .dashboard-card {
+    width: 220px;
+    padding: 20px;
+  }
+
+  .dashboard-card h2 {
+    font-size: 1.1rem;
+  }
+
+  .dashboard-card__buttons button {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .dashboard-service-item {
+    padding: 14px;
+  }
+
+  .dashboard-service-item button {
+    padding: 6px 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .dashboard {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .dashboard-card-wrapper {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-card-wrapper .dashboard-card {
+    width: 100%;
+    border-radius: 12px;
+  }
+
+  .dashboard-card__buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dashboard-card__buttons button {
+    flex: 1 1 calc(50% - 8px);
+    padding: 10px;
+  }
+
+  .dashboard-services {
+    width: 100%;
+    padding-right: 0;
+  }
+
+  .dashboard-service-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .dashboard-service-item button {
+    width: 48%;
+  }
+}
