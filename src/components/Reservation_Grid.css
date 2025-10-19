@@ -1,0 +1,8 @@
+.reservations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 50px; /* mais espaço entre os cards */
+  padding: 40px;
+  justify-items: center;
+  background: transparent;
+}

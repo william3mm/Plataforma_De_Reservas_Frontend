@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import api from "../api/axios";
 import type { Reservation } from "../types/Reservation";
+import ReservationsGrid from "../components/Reservation_Grid";
+import "../components/Reservation_Grid.css";
+import Navbar from "../components/Navbar";
 
 export default function Reservations() {
   const [reservations, setReservations] = useState<Reservation[]>([]);
@@ -25,25 +28,11 @@ export default function Reservations() {
   if (loading) return <p>Carregando...</p>;
 
   if (reservations.length === 0) return <p>Nenhuma transação encontrada</p>;
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-      {reservations.map((r) => (
-        <div key={r.id}>
-          <p>
-            <strong>Cliente:</strong> {r.cliente.nome} ({r.cliente.email})
-          </p>
-          <p>
-            <strong>Serviço:</strong> {r.servico.nome} - {r.valor} Kz
-          </p>
-          <p>
-            <strong>Prestador:</strong> {r.servico.prestador.nome} (
-            {r.servico.prestador.email})
-          </p>
-          <p>
-            <strong>Status:</strong> {r.status}
-          </p>
-        </div>
-      ))}
+    <div className="cliente-home">
+      <Navbar />
+      <ReservationsGrid reservations={reservations} />;
     </div>
   );
 }

@@ -8,11 +8,11 @@ export default function Navbar() {
       <Link to="/home/cliente" className="navbar__link">
         Home
       </Link>
-      <Link to="/services" className="navbar__link">
-        Serviços
-      </Link>
       <Link to="/reservations" className="navbar__link">
         Reservas
+      </Link>
+      <Link to="/reservations" className="navbar__link">
+        Histórico
       </Link>
     </nav>
   );

@@ -1,20 +1,32 @@
-/* src/components/Navbar.css */
 .navbar {
   display: flex;
   gap: 20px;
-  padding: 16px 32px;
-  background-color: #4ea894;
+  padding: 16px;
+  background: #4ea894;
   align-items: center;
   justify-content: center;
 }
 
-.navbar__link {
+.navbar a {
   color: white;
   font-weight: bold;
   text-decoration: none;
-  transition: color 0.2s ease;
+  position: relative;
+  padding-bottom: 4px; /* espaço para o underline */
+  transition: color 0.3s ease;
 }
 
-.navbar__link:hover {
-  color: #187b1b;
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px; /* altura da linha */
+  width: 0%;
+  background: white;
+  transition: width 0.3s ease;
+}
+
+.navbar a:hover::after {
+  width: 100%;
 }
