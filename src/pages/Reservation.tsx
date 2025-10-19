@@ -11,7 +11,7 @@ export default function Reservations() {
   useEffect(() => {
     async function fetchReservations() {
       try {
-        const token = localStorage.getItem("token"); // depois vamos trocar por AsyncStorage
+        const token = localStorage.getItem("token");
         const res = await api.get("/reservations", {
           headers: { Authorization: `Bearer ${token}` },
         });
