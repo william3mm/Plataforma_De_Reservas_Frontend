@@ -14,13 +14,13 @@ export default function Login() {
     e.preventDefault();
     try {
       const res = await api.post("/auth/login", { emailOrNif, senha });
-      const token = res.data.data.token;
+      const token = res.data.token;
 
       // 1. Salvar token
       localStorage.setItem("token", token);
 
       // 2. Redirecionar para dashboard ou outra página
-      navigate("/services");
+      navigate("/home/cliente");
 
       // 3. (Opcional) Atualizar estado global se tiver um Context ou Redux
     } catch (err) {
