@@ -1,8 +1,14 @@
 .reservations-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 50px; /* mais espaço entre os cards */
-  padding: 40px;
-  justify-items: center;
-  background: transparent;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .reservations-grid {
+    grid-template-columns: 1fr; /* on column on mobile*/
+    gap: 16px;
+  }
 }

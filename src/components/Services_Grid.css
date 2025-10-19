@@ -6,3 +6,11 @@
   justify-items: center;
   background: transparent;
 }
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+}
