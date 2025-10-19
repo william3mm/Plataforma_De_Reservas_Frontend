@@ -1,4 +1,3 @@
-// src/pages/Login.tsx
 import React, { useState } from "react";
 import Card from "../components/Card";
 import "./Login.css";

@@ -15,10 +15,10 @@ export default function Dashboard() {
     if (!token) return;
     async function fetchServices() {
       try {
-        const res = await api.get("/services", {
+        const res = await api.get("/services/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setServices(res.data.data);
+        setServices(res.data.services);
       } catch (err) {
         console.error(err);
       } finally {
