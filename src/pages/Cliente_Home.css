@@ -1,5 +1,6 @@
 .cliente-home {
-  min-height: 100vh; /* ocupa a tela toda */
-  background-color: #4ea894; /* cor de fundo da página */
-  padding: 20px;
+  padding: 0 16px; /* garante espaçamento lateral */
+  background-color: #4ea894;
+  min-height: 100vh; /* ocupa toda altura da tela */
+  box-sizing: border-box; /* inclui padding na largura total */
 }

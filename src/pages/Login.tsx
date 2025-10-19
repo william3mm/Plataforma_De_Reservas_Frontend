@@ -1,31 +1,36 @@
 // src/pages/Login.tsx
 import React, { useState } from "react";
 import Card from "../components/Card";
-import "./Login.css"; // CSS da página
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
+import type { UserType } from "../types/User";
 
 export default function Login() {
-  const [emailOrNif, setemailOrNif] = useState("");
+  const [emailOrNif, setEmailOrNif] = useState("");
   const [senha, setSenha] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     try {
       const res = await api.post("/auth/login", { emailOrNif, senha });
-      const token = res.data.token;
+      const { token, tipo } = res.data as { token: string; tipo: UserType };
 
-      // 1. Salvar token
+      // Salva token e tipo no localStorage
       localStorage.setItem("token", token);
+      localStorage.setItem("tipo", tipo);
 
-      // 2. Redirecionar para dashboard ou outra página
-      navigate("/home/cliente");
-
-      // 3. (Opcional) Atualizar estado global se tiver um Context ou Redux
-    } catch (err) {
+      // Redireciona com base no tipo do usuário
+      if (tipo === "CLIENTE") {
+        navigate("/home/cliente");
+      } else if (tipo === "PRESTADOR") {
+        navigate("/dashboard");
+      }
+    } catch (err: any) {
       console.error("Erro login:", err);
-      alert("Falha ao autenticar");
+      alert(err.response?.data?.message || "Falha ao autenticar");
     }
   };
 
@@ -36,15 +41,17 @@ export default function Login() {
         <form onSubmit={handleSubmit}>
           <input
             type="email"
-            placeholder="Email Ou Nif"
+            placeholder="Email ou NIF"
             value={emailOrNif}
-            onChange={(e) => setemailOrNif(e.target.value)}
+            onChange={(e) => setEmailOrNif(e.target.value)}
+            required
           />
           <input
             type="password"
             placeholder="Senha"
             value={senha}
             onChange={(e) => setSenha(e.target.value)}
+            required
           />
           <button type="submit">Entrar</button>
         </form>
