@@ -1,20 +1,16 @@
 .dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(200px, 1fr)
-  ); /* limite mínimo de 200px e máximo flexível */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 16px;
-  justify-content: center; /* centraliza os cards se sobrarem espaços */
-  max-width: 1200px; /* limita a largura total da grid */
-  margin: 0 auto; /* centraliza a grid horizontalmente */
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .dashboard-grid {
-    grid-template-columns: 1fr; /* uma coluna no mobile */
+    grid-template-columns: 1fr;
     gap: 16px;
     padding: 12px;
   }
