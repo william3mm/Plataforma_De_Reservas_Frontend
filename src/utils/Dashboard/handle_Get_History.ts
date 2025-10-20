@@ -13,7 +13,8 @@ export default async function handleGetHistory(
       headers: { Authorization: `Bearer ${token}` },
     });
 
-    setServices(res.data.data);
+    setServices(res.data.services);
+    alert("Verifique o histórico no console");
   } catch (error) {
     console.error(error);
     alert("Erro ao listar serviços.");

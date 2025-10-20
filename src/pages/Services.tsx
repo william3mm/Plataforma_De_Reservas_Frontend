@@ -28,7 +28,7 @@ export default function Services({ saldo, setSaldo }: ServicesProps) {
         const res = await api.get("/services", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setServices(res.data.data);
+        setServices(res.data.services);
       } catch (error) {
         console.error("Erro ao carregar serviços", error);
       } finally {

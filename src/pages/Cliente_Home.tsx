@@ -35,7 +35,7 @@ export default function ClienteHome() {
         const resServices = await api.get("/services", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setServices(resServices.data.data);
+        setServices(resServices.data.services);
       } catch (err) {
         console.error(err);
       } finally {
